@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+public class RegresionLineal{
+    private Scanner teclado;
+    private double [] datosx;
+    private double [] datosx2;
+    private double [] datosy;
+    private double [] datosxy;
+    private int n = 0, indiv = 0;;
+    private double sumx = 0, sumy = 0, sumx2 = 0, sumxy = 0, beta0 = 0, beta1 = 0, indiv2 = 0;
+
+    public void cargarDatos (){
+        teclado = new Scanner(System.in);
+        System.out.println("¿Cuantos Datos de X y Y Deseas Ingresar?");
+        n = teclado.nextInt();
+        datosx = new double[n];
+        datosy = new double[n];
+        datosx2 = new double[n];
+        datosxy = new double[n];
+        for(int i=0; i<n; i++){
+            System.out.print("Ingresa el Dato X: ");
+            datosx[i] = teclado.nextDouble();
+        }
+        for(int i=0; i<n; i++ ){
+            System.out.print("Ingresa el Dato Y: ");
+            datosy[i] = teclado.nextDouble();
+        }
+    }
+
+    public void imprimirDatos (){
+        System.out.println(" X | Y ");
+        for (int i=0; i<n; i++){
+            System.out.println(datosx[i] + " | "+ datosy[i]);
+        }
+    }
+
+    public void calcularDatos(){
+        for(int i=0; i<n; i++){
+            sumx = sumx + datosx[i];
+        }
+        System.out.println("\nLa suma de los datos X es: "+sumx);
+        for (int i=0; i<n; i++){
+            sumy = sumy + datosy[i];
+        }
+        System.out.println("La suma de los datos Y es: "+sumy);
+        for(int i=0; i<n; i++){
+            datosx2[i] = datosx[i] * datosx[i];
+            datosxy[i] = datosx[i] * datosy[i];
+        }
+        for (int i=0; i<n; i++){
+            sumx2 = sumx2 + datosx2[i];
+        }
+        System.out.println("X^2 ="+sumx2);
+        for (int i=0; i<n; i++){
+            sumxy = sumxy + datosxy[i];
+        }
+        System.out.println("X*Y ="+sumxy);
+
+        beta0 = ((sumy)*(sumx2)-(sumx)*(sumxy))/(n*(sumx2)-(sumx)*(sumx));
+        System.out.println("Beta_0 = "+beta0);
+
+        beta1 = (n*(sumxy)-(sumx)*(sumy))/(n*(sumx2)-(sumx)*(sumx));
+        System.out.println("Beta_1 = "+beta1);
+    }
+
+    public void prediccionIndiv (){
+        System.out.println("¿Desea hacer un calculo de prediccion de manera individual?");
+        System.out.println("1.- SI 2.-NO");
+        int respuesta = 0;
+        respuesta = teclado.nextInt();
+        if(respuesta == 1){
+            System.out.println("Introduzca el valor X:");
+            indiv = teclado.nextInt();
+            indiv2 = beta0+(beta1*indiv);
+            System.out.println("El resultado de "+indiv+" es: "+indiv2);
+        }else{}
+    }
+}
+import java.util.Scanner;
+
+public class PrincipalMain extends RegresionLineal {
+
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        RegresionLineal RL = new RegresionLineal();
+        RL.cargarDatos();
+        RL.imprimirDatos();
+        RL.calcularDatos();
+        RL.prediccionIndiv();
+    }
+}
