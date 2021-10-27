@@ -1,12 +1,12 @@
 package rls;
 
 public abstract class Datos {
-    double [] datosx = {23,26,30,34,43,48,52,57,58};
-    double [] datosy = {651,762,856,1063,1190,1298,1421,1440,1518};
-    double [] regreX = {62, 72, 82};
-    double [] datosx2 = new double[9];
-    double [] datosxy = new double[9];
-    double [] resulRegreX = new double[3];
+    protected double [] datosx = {23,26,30,34,43,48,52,57,58};
+    protected double [] datosy = {651,762,856,1063,1190,1298,1421,1440,1518};
+    protected double [] regreX = {62, 72, 82};
+    protected double [] datosx2 = new double[9];
+    protected double [] datosxy = new double[9];
+    protected double [] resulRegreX = new double[3];
     protected double sumx, sumy, sumx2, sumxy, beta0, beta1, indiv, indiv2;
     protected int n;
 
