@@ -89,7 +89,7 @@ public class Calculo extends Datos{
         beta0 = ((sumy)*(sumx2)-(sumx)*(sumxy))/(n*(sumx2)-(sumx)*(sumx));
         System.out.println("Beta_0 = "+beta0);
 
-        beta1 = (9*(sumxy)-(sumx)*(sumy))/(n*(sumx2)-(sumx)*(sumx));
+        beta1 = (n*(sumxy)-(sumx)*(sumy))/(n*(sumx2)-(sumx)*(sumx));
         System.out.println("Beta_1 = "+beta1);
     }
 
@@ -117,7 +117,7 @@ public class RegresionLineal extends Agent{
     }
     private class MyOneShotBehaviour extends OneShotBehaviour{
         public void action(){
-	    System.out.println("Agente Iniciado");
+            System.out.println("Agente Iniciado");
             Calculo c = new Calculo(0, 0, 0, 0, 0, 0, 0, 0, 9);
             c.datosX();
             c.datosY();
@@ -127,7 +127,7 @@ public class RegresionLineal extends Agent{
             c.prediccionIndiv();
         }
         public int onEnd(){
-	    System.out.println("Agente Eliminado");
+            System.out.println("Agente Eliminado");
             myAgent.doDelete();
             return super.onEnd();
         }
